@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.mobile.luthkemp.luthkemp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,6 +24,22 @@
         <activity
             android:name=".Notification"
             android:label="@string/title_activity_notification"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mobile.luthkemp.luthkemp.MainActivity"/>
+        </activity>
+        <activity
+            android:name=".Welcome"
+            android:label="@string/title_activity_welcome"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mobile.luthkemp.luthkemp.MainActivity"/>
+        </activity>
+        <activity
+            android:name=".Prayer"
+            android:label="@string/title_activity_prayer"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
