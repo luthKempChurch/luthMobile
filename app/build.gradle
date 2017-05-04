@@ -11,6 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        manifestPlaceholders = [HOCKEYAPP_APP_ID: "8d22258ff91d4eb7803ad511f4225905"]
     }
     buildTypes {
         release {
@@ -33,5 +34,6 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.7.0'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.android.support:support-v4:24.2.1'
+    compile 'net.hockeyapp.android:HockeySDK:4.1.4'
     testCompile 'junit:junit:4.12'
 }

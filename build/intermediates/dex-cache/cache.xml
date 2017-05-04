@@ -11,6 +11,15 @@
         <dex dex="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\pre-dexed\debug\okio-1.12.0_306413cb6ada6201a86fcdf46cb261b29941a4f9.jar" />
     </item>
     <item
+        is-multidex="false"
+        jar="C:\Users\J.Madzivadondo\.android\build-cache\8d00b7158e8d3e1636be1a3f627226adebafddf1\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="053bbcb650ce81938e89012a28c320c0091d79a3">
+        <dex dex="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\pre-dexed\debug\classes_1398a0b90eb9c803cd2a42b2147b3ab38545b9a6.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
@@ -52,7 +61,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="20deae8d74ea3607bdccd92ef99a1b2d4bdb2793">
+        sha1="2b242edde4cf3aa63c39fea3d5da034332234c5b">
         <dex dex="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_4299891cdd8e2a999e56a4a358eadf7257676d59\classes.dex" />
     </item>
 

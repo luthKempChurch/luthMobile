@@ -12,8 +12,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import net.hockeyapp.android.CrashManager;
+import net.hockeyapp.android.UpdateManager;
+
+
 public class MainActivity extends AppCompatActivity {
 
+  private static final String SETWELCOME = "welcome";
+  private static final int SETTODAYNEWS = 8;
+  private static final int SETPRAYER = 9;
+  private static final int SETNOTFY = 10;
   private FloatingActionButton fab;
   private Button mOpenNot;
   private CardView btnShare;
@@ -22,10 +30,6 @@ public class MainActivity extends AppCompatActivity {
   private CardView btnNotification;
   private CardView btnWelcome;
   private CardView btnEvents;
-  private static final String SETWELCOME = "welcome";
-  private static final int SETTODAYNEWS = 8;
-  private static final int SETPRAYER = 9;
-  private static final int SETNOTFY =10;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     initViews();
-
+    checkForUpdates();
   }
 
   private void initViews() {
@@ -42,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     fab = (FloatingActionButton) findViewById(R.id.fab);
     btnEvents = (CardView) findViewById(R.id.btnEvents);
     btnGive = (CardView) findViewById(R.id.btnGive);
-    btnNotification = (CardView)findViewById(R.id.btnNotification);
+    btnNotification = (CardView) findViewById(R.id.btnNotification);
     btnPrayer = (CardView) findViewById(R.id.btnPrayers);
     btnWelcome = (CardView) findViewById(R.id.btnWelcome);
     btnShare = (CardView) findViewById(R.id.btnShare);
@@ -59,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
       public void onClick(View v) {
         Intent notify = new Intent(MainActivity.this, Welcome.class);
         //startActivityForResult(notify,SETWELCOME);
-        notify.putExtra("key",SETWELCOME);
+        notify.putExtra("key", SETWELCOME);
         startActivity(notify);
       }
     });
@@ -86,12 +90,13 @@ public class MainActivity extends AppCompatActivity {
 
       }
     });
-     btnEvents.setOnClickListener(new View.OnClickListener() {
-       @Override
-       public void onClick(View v) {
-
-       }
-     });
+    btnEvents.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent notify = new Intent(MainActivity.this, Event.class);
+        startActivity(notify);
+      }
+    });
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -109,6 +114,37 @@ public class MainActivity extends AppCompatActivity {
       }
     });*/
 
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    checkForCrashes();
+  }
+
+  @Override
+  public void onPause() {
+    super.onPause();
+    unregisterManagers();
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    unregisterManagers();
+  }
+
+  private void checkForCrashes() {
+    CrashManager.register(this);
+  }
+
+  private void checkForUpdates() {
+    // Remove this for store builds!
+    UpdateManager.register(MainActivity.this);
+  }
+
+  private void unregisterManagers() {
+    UpdateManager.unregister();
   }
 
   @Override
