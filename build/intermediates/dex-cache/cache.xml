@@ -2,22 +2,40 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="C:\Users\J.Madzivadondo\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.12.0\3742beff8024d0a0073d284b7c5e4cbf73d99b25\okio-1.12.0.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\J.Madzivadondo\.android\build-cache\9723aec1857f4d41df9853c165c5f2585cd6c625\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="3742beff8024d0a0073d284b7c5e4cbf73d99b25">
-        <dex dex="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\pre-dexed\debug\okio-1.12.0_306413cb6ada6201a86fcdf46cb261b29941a4f9.jar" />
+        sha1="bdcc2a9572f18b8c90a3a157cab6cdfc97c6c736">
+        <dex dex="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e443a05ccfad1d743907ddb8b3833f48321317ab\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\J.Madzivadondo\.android\build-cache\8d00b7158e8d3e1636be1a3f627226adebafddf1\output\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\J.Madzivadondo\.android\build-cache\16a123fe561decdcabe37664d975b3fa75f32d84\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="053bbcb650ce81938e89012a28c320c0091d79a3">
-        <dex dex="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\pre-dexed\debug\classes_1398a0b90eb9c803cd2a42b2147b3ab38545b9a6.jar" />
+        sha1="6003d64df88a6ce5e961fa2bad7f1b9b97689ac1">
+        <dex dex="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e55c0c58860b27902e4f14c2bbac0b610ae3597f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\J.Madzivadondo\.android\build-cache\3eddde1057990e4017f1745d846c620884ef3c90\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="19696dc358ac668e341f28c41e3387d61ccdb81d">
+        <dex dex="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f2fca271deff25af1304cfbe308977e2db3673ad\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\J.Madzivadondo\.android\build-cache\b1952ae023c244c5a95f3fafba2e081254076b94\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c7626a9aa507bbbdc16188bc9a9f9bf3370c1ddd">
+        <dex dex="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_859e62c2933956537013962620a412de1a934d61\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -25,35 +43,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_576dfec094507160924f089185ae8004b442ac8d\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\J.Madzivadondo\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.7.0\6edbebdd8868708db718d15c09c4b28037fd487e\okhttp-3.7.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6edbebdd8868708db718d15c09c4b28037fd487e">
-        <dex dex="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\pre-dexed\debug\okhttp-3.7.0_e7384a1b545ab8ca50fe53de5964f5ca0780e034.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\J.Madzivadondo\.android\build-cache\ef7d18d85222a55827c7a2dbb6b8ea24691406e5\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="914f5d3e3ace66080e59613708f06d129a222e25">
-        <dex dex="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\pre-dexed\debug\classes_3348e8df6c88542429b057d6790df1054edafbe8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\J.Madzivadondo\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.6.2\f1bc476cc167b18e66c297df599b2377131a8947\gson-2.6.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f1bc476cc167b18e66c297df599b2377131a8947">
-        <dex dex="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\pre-dexed\debug\gson-2.6.2_b61797077f060221fabca3cf5b06766bfb34f2b1.jar" />
     </item>
     <item
         is-multidex="true"
@@ -61,7 +52,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="2b242edde4cf3aa63c39fea3d5da034332234c5b">
+        sha1="400448154e6c50fa4ea7f052222b56e1ab9ff62c">
         <dex dex="C:\Users\J.Madzivadondo\Documents\LuthKemp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_4299891cdd8e2a999e56a4a358eadf7257676d59\classes.dex" />
     </item>
 

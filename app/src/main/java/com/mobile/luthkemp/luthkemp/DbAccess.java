@@ -10,7 +10,7 @@ import okhttp3.RequestBody;
  */
 
 public class DbAccess {
-  private static final String Url = "http://localhost:62168/";
+  private final String Url = "https://09a99ca2.ngrok.io/api/";
   public OkHttpClient client;
   public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
@@ -18,7 +18,7 @@ public class DbAccess {
     client = new OkHttpClient();
   }
 
-  public static Request GET(String path) {
+  public Request GET(String path) {
     try {
       return new Request.Builder()
         .url(Url+path)
@@ -29,11 +29,11 @@ public class DbAccess {
     }
   }
 
-  public static Request POST(String json) {
+  public Request POST(String json,String path) {
     try {
       RequestBody body = RequestBody.create(JSON, json);
       return new Request.Builder()
-        .url(Url)
+        .url(Url+path)
         .post(body)
         .build();
 

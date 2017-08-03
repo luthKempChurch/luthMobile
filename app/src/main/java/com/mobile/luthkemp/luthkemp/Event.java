@@ -1,29 +1,25 @@
 package com.mobile.luthkemp.luthkemp;
 
-import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
 import com.mobile.luthkemp.luthkemp.adapters.EventsAdapter;
 import com.mobile.luthkemp.luthkemp.helper.EventView;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-public class Event extends AppCompatActivity {
-private EventsAdapter adapter;
+public class Event extends BaseEntry {
+  private EventsAdapter adapter;
   private ListView listView;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.event);
     initViews();
-   adapterTest();
+    showEvents();
     //getActionBar().setDisplayHomeAsUpEnabled(true);
   }
 
@@ -31,15 +27,45 @@ private EventsAdapter adapter;
     listView = (ListView) findViewById(R.id.listviewEvents);
   }
 
-  private void adapterTest(){
-    List<EventView> events = new ArrayList<>();
-    events.add(new EventView(1,new Date(),"Prayer","ewewewe","jabu","week 2","jhasjha",true));
-    events.add(new EventView(2,new Date(),"soccer","ewewewe","jabu","week 4","jhasjha",true));
-    events.add(new EventView(3,new Date(),"Career","ewewewe","jabu","week 1","jhasjha",true));
-    events.add(new EventView(4,new Date(),"Bits","ewewewe","jabu","week 2","jhasjha",true));
-   adapter = new EventsAdapter(Event.this,events);
-    listView.setAdapter(adapter);
-    adapter.notifyDataSetChanged();
+  private void showEvents() {
+    doOnUIThread(action_SHOW_PROGRESS_DIALOG, "getting events");
+    GET("event/getEvents");
+  }
+
+  private void display() {
+    runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        doOnUIThread(action_HIDE_PROGRESS_DIALOG, "");
+      }
+    });
+  }
+
+  private void doOnUIThread(final int action, final String txt) {
+    runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        //ProgressDialog progressDialog = new ProgressDialog(Event.this);
+        switch (action) {
+          case action_SHOW_PROGRESS_DIALOG:
+            progressDialog = new ProgressDialog(Event.this);
+            progressDialog.setCancelable(false);
+            progressDialog.setMessage(txt);
+            // Show it
+            progressDialog.show();
+            break;
+          case action_HIDE_PROGRESS_DIALOG:
+            if (progressDialog != null) {
+              progressDialog.dismiss();
+            }
+            break;
+          default:
+            break;
+        }
+      }
+    });
   }
 
   @Override
@@ -78,5 +104,18 @@ private EventsAdapter adapter;
     }
 
     return super.onOptionsItemSelected(item);
+  }
+
+  @Override
+  public void OnGetDataSucces(String responseBody) {
+    EventView[] events = new Gson().fromJson(responseBody, EventView[].class);
+    adapter = new EventsAdapter(Event.this, events);
+    display();
+
+  }
+
+  @Override
+  public void OnGetDataFailed(String ResponseBody) {
+    doOnUIThread(action_HIDE_PROGRESS_DIALOG, "");
   }
 }

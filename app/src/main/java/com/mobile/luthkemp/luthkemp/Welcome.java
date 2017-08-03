@@ -37,7 +37,20 @@ public class Welcome extends AppCompatActivity {
 
     return super.onOptionsItemSelected(item);
   }
+  @Override
+  protected void onResume() {
+    super.onResume();
+  }
 
+  @Override
+  public void onPause() {
+    super.onPause();
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+  }
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);

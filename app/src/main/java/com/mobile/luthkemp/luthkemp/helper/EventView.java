@@ -22,7 +22,7 @@ public class EventView implements Parcelable {
     }
   };
   public int Id;
-  public Date Date;
+  public String Date;
   public String Title;
   public String Address;
   public String ContactPerson;
@@ -39,7 +39,7 @@ public class EventView implements Parcelable {
     Email = in.readString();
   }
 
-  public EventView(int Id, Date Date, String Title, String Address, String ContactPerson, String Description, String Email, Boolean Show) {
+  public EventView(int Id, String Date, String Title, String Address, String ContactPerson, String Description, String Email, Boolean Show) {
     this.Address = Address;
     this.ContactPerson = ContactPerson;
     this.Date = Date;

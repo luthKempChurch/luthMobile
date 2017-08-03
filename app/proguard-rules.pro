@@ -26,3 +26,5 @@
 -keep class com.squareup.okhttp3.** {
 *;
 }
+-dontwarn me.pushy.**
+-keep class me.pushy.** { *; }
