@@ -1,16 +1,19 @@
 package com.mobile.luthkemp.luthkemp;
 
 import android.app.Fragment;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * A placeholder fragment containing a simple view.
+ * Created by J.Madzivadondo on 2017/05/04.
  */
-public class PrayerFragment extends Fragment {
 
+@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
+public class PrayerFragment extends Fragment {
   public PrayerFragment() {
   }
 

@@ -1,5 +1,6 @@
 package com.mobile.luthkemp.luthkemp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,10 +21,8 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class Notification extends AppCompatActivity {
+public class Notification extends BaseEntry {
 
-  private DbAccess db;
-  //public OkHttpClient client;
   private NotificationAdapter adapter;
   private ListView lstView;
 
@@ -33,8 +32,8 @@ public class Notification extends AppCompatActivity {
     setContentView(R.layout.activity_notification);
     initViews();
     initVals();
-    //GetNotifications();
-    adapterTest();
+    GetNotifications();
+    //adapterTest();
     //postData();
   }
 
@@ -67,13 +66,26 @@ public class Notification extends AppCompatActivity {
 
     return super.onOptionsItemSelected(item);
   }
+  @Override
+  protected void onResume() {
+    super.onResume();
+  }
 
+  @Override
+  public void onPause() {
+    super.onPause();
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+  }
   private void postData() {
     try {
-      String json = new Gson().toJson(new DbAccess());
+      //String json = new Gson().toJson(new DbAccess());
 
-      String loginData = "grant_type=password&username=amFidWxhbmkrNDVAc3RvY2tzaG9wLmNvLnph&password=cGFzc3dvcmQ=";
-      db.client.newCall(db.POST(loginData))
+      //String loginData = "grant_type=password&username=amFidWxhbmkrNDVAc3RvY2tzaG9wLmNvLnph&password=cGFzc3dvcmQ=";
+      db.client.newCall(db.GET("notify/all_notifications"))
         .enqueue(new Callback() {
           @Override
           public void onFailure(Call call, IOException e) {
@@ -83,7 +95,7 @@ public class Notification extends AppCompatActivity {
           @Override
           public void onResponse(Call call, Response response) throws IOException {
             if (response.isSuccessful()) {
-              String responseBody = response.body().toString();
+              String responseBody = response.body().string();
             } else {
               Log.e("Notification", response.message());
             }
@@ -95,73 +107,68 @@ public class Notification extends AppCompatActivity {
     }
   }
 
-  private void adapterTest() {
-    List<NotificationView> notifes = new ArrayList<>();
-    notifes.add(new NotificationView("church starts at 9 am", 0, "Church meeting"));
-    notifes.add(new NotificationView("camp on 12 september", 1, "Youth camp"));
-    notifes.add(new NotificationView("church starts at 9 am", 2, "Church meeting"));
-    notifes.add(new NotificationView("camp on 14 september", 3, "Youth camp"));
-    notifes.add(new NotificationView("church starts at 9 am", 0, "Church meeting"));
-    notifes.add(new NotificationView("camp on 12 september", 1, "Youth camp"));
-    notifes.add(new NotificationView("church starts at 9 am", 2, "Church meeting"));
-    notifes.add(new NotificationView("camp on 14 september", 3, "Youth camp"));
-    notifes.add(new NotificationView("church starts at 9 am", 0, "Church meeting"));
-    notifes.add(new NotificationView("camp on 12 september", 1, "Youth camp"));
-    notifes.add(new NotificationView("church starts at 9 am", 2, "Church meeting"));
-    notifes.add(new NotificationView("camp on 14 september", 3, "Youth camp"));
-    notifes.add(new NotificationView("church starts at 9 am", 0, "Church meeting"));
-    notifes.add(new NotificationView("camp on 12 september", 1, "Youth camp"));
-    notifes.add(new NotificationView("church starts at 9 am", 2, "Church meeting"));
-    notifes.add(new NotificationView("camp on 14 september", 3, "Youth camp"));
-    notifes.add(new NotificationView("church starts at 9 am", 0, "Church meeting"));
-    notifes.add(new NotificationView("camp on 12 september", 1, "Youth camp"));
-    notifes.add(new NotificationView("church starts at 9 am", 2, "Church meeting"));
-    notifes.add(new NotificationView("camp on 14 september", 3, "Youth camp"));
-    notifes.add(new NotificationView("church starts at 9 am", 0, "Church meeting"));
-    notifes.add(new NotificationView("camp on 12 september", 1, "Youth camp"));
-    notifes.add(new NotificationView("church starts at 9 am", 2, "Church meeting"));
-    notifes.add(new NotificationView("camp on 14 september", 3, "Youth camp"));
-    adapter = new NotificationAdapter(Notification.this, notifes);
-    lstView.setAdapter(adapter);
-    adapter.notifyDataSetChanged();
+  private void adapterTest(final NotificationView[] notifes) {
+    runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        adapter = new NotificationAdapter(Notification.this, notifes);
+        lstView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+      }
+    });
+
   }
 
   private void GetNotifications() {
     try {
-      db.client.newCall(db.GET("api/notify/all_notifications"))
-        .enqueue(new Callback() {
-          @Override
-          public void onFailure(okhttp3.Call call, IOException e) {
-
-            Log.e("Erro", e.getMessage());
-          }
-
-          @Override
-          public void onResponse(okhttp3.Call call, final Response response) throws IOException {
-            if (response.isSuccessful()) {
-              String responseBody = response.body().toString();
-              List<NotificationView> nt = (List<NotificationView>) new Gson().fromJson(responseBody, NotificationView.class);
-              //ArrayAdapter<NotificationView> itemsNotfy = new ArrayAdapter<NotificationView>()
-              adapter = new NotificationAdapter(Notification.this, nt);
-              lstView.setAdapter(adapter);
-              adapter.notifyDataSetChanged();
-            } else {
-              Log.e("Notification", response.message());
-            }
-
-          }
-        });
-
+      doOnUIThread(action_SHOW_PROGRESS_DIALOG,"Getting notifications");
+      GET("notify/all_notifications");
     } catch (Exception e) {
-
+      doOnUIThread(action_HIDE_PROGRESS_DIALOG,"");
     }
   }
-
+  private void doOnUIThread(final int action, final String txt) {
+    runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        //ProgressDialog progressDialog = new ProgressDialog(Event.this);
+        switch (action) {
+          case action_SHOW_PROGRESS_DIALOG:
+            progressDialog = new ProgressDialog(Notification.this);
+            progressDialog.setCancelable(false);
+            progressDialog.setMessage(txt);
+            // Show it
+            progressDialog.show();
+            break;
+          case action_HIDE_PROGRESS_DIALOG:
+            if (progressDialog != null) {
+              progressDialog.dismiss();
+            }
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  }
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if (resultCode == RESULT_OK) {
 
     }
+  }
+
+  @Override
+  public void OnGetDataSucces(String responseBody) {
+    NotificationView[] nt = (NotificationView[]) new Gson().fromJson(responseBody, NotificationView[].class);
+    //ArrayAdapter<NotificationView> itemsNotfy = new ArrayAdapter<NotificationView>()
+    adapterTest(nt);
+    doOnUIThread(action_HIDE_PROGRESS_DIALOG,"");
+  }
+
+  @Override
+  public void OnGetDataFailed(String ResponseBody) {
+    doOnUIThread(action_HIDE_PROGRESS_DIALOG,"");
   }
 }

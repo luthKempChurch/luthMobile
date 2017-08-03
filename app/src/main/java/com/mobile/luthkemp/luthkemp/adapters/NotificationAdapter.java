@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.mobile.luthkemp.luthkemp.R;
 import com.mobile.luthkemp.luthkemp.helper.NotificationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +18,7 @@ import java.util.List;
 
 public class NotificationAdapter extends ArrayAdapter<NotificationView> {
 
-  public NotificationAdapter(Context context, List<NotificationView> notifications) {
+  public NotificationAdapter(Context context, NotificationView[] notifications) {
     super(context, R.layout.activity_notification, notifications);
 
   }
@@ -55,5 +54,4 @@ public class NotificationAdapter extends ArrayAdapter<NotificationView> {
     TextView title;
     TextView message;
   }
-
 }
